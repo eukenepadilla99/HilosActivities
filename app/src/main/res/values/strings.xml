@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">HilosActivities</string>
+    <string name="tvAsc">Ascendente: </string>
+    <string name="tvDesc">Descendente: </string>
+    <string name="tvBoth">Los dos: </string>
+    <string name="etNum">2</string>
+    <string name="butBack">Go Back</string>
+    <string name="butResult">Result</string>
+    <string name="butSave">Save</string>
+</resources>
