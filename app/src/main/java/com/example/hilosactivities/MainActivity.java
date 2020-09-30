@@ -3,6 +3,7 @@ package com.example.hilosactivities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
 
                 MiThreadDesc miThreadDesc = new MiThreadDesc(num);
                 miThreadDesc.start();
+
+//                MiThreadBoth miThreadBoth = new MiThreadBoth(num);
+//                miThreadBoth.start();
             }
         });
     }
@@ -56,26 +60,33 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void run() {
-            result = asc(num);
+//            result = asc(num);
 
             //necesario para poder usar los elementos visuales (view) y modificarlos
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    tvAsc.append(result + "\n");
-                    tvBoth.append(result + "\n");
+                    for(int i=1;i<=num;i++){
+
+                        SystemClock.sleep(100);
+                        tvAsc.append(i + " ");
+                        tvBoth.append(i + " ");
+                    }
+
                 }
             });
         }
     }
-
-    private String asc(int num) {
-        String result="";
-        for(int i=1;i<=num;i++){
-            result+=" "+i;
-        }
-        return result;
-    }
+//
+//    private String asc(int num) {
+//        String res="";
+//        for(int i=1;i<=num;i++){
+//            res+=" "+i;
+//            SystemClock.sleep(1000);
+//
+//        }
+//        return res;
+//    }
 
 
     public class MiThreadDesc extends Thread {
@@ -88,25 +99,55 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void run() {
-            result = desc(num);
+//            result = desc(num);
 
             //necesario para poder usar los elementos visuales (view) y modificarlos
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    tvDesc.append(result + "\n");
-                    tvBoth.append(result + "\n");
+                    for(int i=num;1<=i;i--) {
+                        tvDesc.append(i + " ");
+                        tvBoth.append(i + " ");
+
+                    }
                 }
             });
         }
     }
 
+//
+//    private String desc(int num) {
+//        String res="";
+//        for(int i=num;1<=i;i--){
+//            res+=" "+i;
+//            SystemClock.sleep(1500);
+//        }
+//        return res;
+//    }
 
-    private String desc(int num) {
-        String result="";
-        for(int i=num;1<=i;i--){
-            result+=" "+i;
-        }
-        return result;
-    }
+//    public class MiThreadBoth extends Thread {
+//        private int num;
+//        private String resultAsc;
+//        private String resultDesc;
+//        private int [] result;
+//
+//        public MiThreadBoth(int num) {
+//            this.num = num;
+//        }
+//
+//        @Override
+//        public void run() {
+////            resultAsc=asc(num);
+////            resultDesc=desc(num);
+////            result=Integer.parseInt(resultAsc);
+//
+//            //necesario para poder usar los elementos visuales (view) y modificarlos
+//            runOnUiThread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    tvBoth.append(result + "\n");
+//                }
+//            });
+//        }
+//    }
 }
