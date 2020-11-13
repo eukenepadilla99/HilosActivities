@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                     });
-                    builder.build().load("https://archive.org/details/doki_20201113").into(imgUrlId);
+                    builder.build().load("https://archive.org/download/doki_20201113/WhatsApp%20Image%202018-02-16%20at%2013.59.55.jpeg").into(imgUrlId);
                     Log.d("miFiltro","Uri: "+imgUrlId.getImageAlpha()+"<--/ failed");
 
                 }
