@@ -2,12 +2,17 @@ package com.example.hilosactivities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvBoth;
     private EditText etNum;
     private Button butResult;
+    private ImageView imgUrlId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +33,12 @@ public class MainActivity extends AppCompatActivity {
         tvBoth=findViewById(R.id.tvBoth);
         etNum=findViewById(R.id.etNum);
         butResult=findViewById(R.id.butResult);
+        imgUrlId=findViewById(R.id.imgUrlId);
+
+        MiThreadPhoto miThreadPhoto = new MiThreadPhoto();
+        miThreadPhoto.start();
+
+
 
         butResult.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,12 +56,42 @@ public class MainActivity extends AppCompatActivity {
                 MiThreadDesc miThreadDesc = new MiThreadDesc(num);
                 miThreadDesc.start();
 
-//                MiThreadBoth miThreadBoth = new MiThreadBoth(num);
-//                miThreadBoth.start();
             }
         });
     }
+    public class MiThreadPhoto extends Thread {
 
+        public MiThreadPhoto() {
+        }
+
+        @Override
+        public void run() {
+//            result = asc(num);
+
+            //necesario para poder usar los elementos visuales (view) y modificarlos
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+//                    Picasso.get().load("https://archive.org/details/doki_20201113").into(imgUrlId);
+                    Picasso.Builder builder = new Picasso.Builder(getBaseContext());
+                    builder.listener(new Picasso.Listener()
+                    {
+                        @Override
+                        public void onImageLoadFailed(Picasso picasso, Uri uri, Exception exception) {
+                            Log.d("miFiltro","Uri: "+uri+"<--/ failed");
+                            Log.d("miFiltro","Exception: "+exception+"<--/ Exception");
+
+                        }
+
+
+                    });
+                    builder.build().load("https://archive.org/details/doki_20201113").into(imgUrlId);
+                    Log.d("miFiltro","Uri: "+imgUrlId.getImageAlpha()+"<--/ failed");
+
+                }
+            });
+        }
+    }
     public class MiThreadAsc extends Thread {
         private int num;
         private String result;
@@ -77,16 +119,7 @@ public class MainActivity extends AppCompatActivity {
             });
         }
     }
-//
-//    private String asc(int num) {
-//        String res="";
-//        for(int i=1;i<=num;i++){
-//            res+=" "+i;
-//            SystemClock.sleep(1000);
-//
-//        }
-//        return res;
-//    }
+
 
 
     public class MiThreadDesc extends Thread {

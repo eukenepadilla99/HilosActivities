@@ -50,10 +50,10 @@
         android:text="@string/etNum"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.432"
+        app:layout_constraintHorizontal_bias="0.412"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.204" />
+        app:layout_constraintVertical_bias="0.338" />
 
     <Button
         android:id="@+id/butResult"
@@ -66,6 +66,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.557" />
+
+    <ImageView
+        android:id="@+id/imgUrlId"
+        android:layout_width="149dp"
+        android:layout_height="235dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.438"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_launcher_background"
+        tools:ignore="VectorDrawableCompat" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
